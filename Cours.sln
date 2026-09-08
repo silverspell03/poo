@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cours", "Cours\Cours.csproj", "{CCBD6327-4F30-4074-9F14-FA479DDB073A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercices", "Exercices\Exercices.csproj", "{CCBD6327-4F30-4074-9F14-FA479DDB073A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
