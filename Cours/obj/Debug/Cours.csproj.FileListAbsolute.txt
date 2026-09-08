@@ -1,0 +1,6 @@
+C:\Users\Connard\RiderProjects\Cours\Cours\bin\Debug\Cours.exe
+C:\Users\Connard\RiderProjects\Cours\Cours\bin\Debug\Cours.pdb
+C:\Users\Connard\RiderProjects\Cours\Cours\obj\Debug\Cours.csproj.AssemblyReference.cache
+C:\Users\Connard\RiderProjects\Cours\Cours\obj\Debug\Cours.csproj.CoreCompileInputs.cache
+C:\Users\Connard\RiderProjects\Cours\Cours\obj\Debug\Cours.exe
+C:\Users\Connard\RiderProjects\Cours\Cours\obj\Debug\Cours.pdb
