@@ -1,83 +1,75 @@
-using System.Runtime.InteropServices.ComTypes;
 using CoursPOO.Classes;
+using CoursPOO.Hotel;
 
-var bibliotheque = new Bibliotheque();
-var livre1 = new Livre() {Annee = "2024", Auteur = "Moi meme", Titre = "Nulle ce livre"};
-var livre2 = new Livre() {Annee = "2025", Auteur = "L'autre", Titre = "Trop bien le livre"};
-var livre3 = new Livre() {Annee = "2022", Auteur = "aaaaa", Titre = "OOO"};
-bibliotheque.AjouterLivre(livre1);
-bibliotheque.AjouterLivre(livre2);
-bibliotheque.AjouterLivre(livre3);
+var hotel = new Hotel();
+
+Chambre chambre1 = new Chambre(2, 123213.4342m, TypeChambre.Simple);
+Chambre chambre2 = new Chambre(2, 213.342m, TypeChambre.Simple);
+Chambre chambre3 = new Chambre(2, 213.342m, TypeChambre.Simple);
+
+hotel._chambres.Add(chambre1);
+hotel._chambres.Add(chambre2);
+hotel._chambres.Add(chambre3);
 
 while (true)
 {
     Console.Clear();
-    Console.WriteLine("GESTION DE BIBLIOTHEQUE");
+    Console.WriteLine("GESTION D'UN HOTEL");
     Console.WriteLine("---------------------");
-    Console.WriteLine("");
-    Console.WriteLine("1 - Recherche par année, auteur ou année");
-    Console.WriteLine("2 - Ajout d'un livre");
-    Console.WriteLine("3 - Supprimer un livre");
-    Console.WriteLine("4 - Afficher tous les livres");
+    Console.WriteLine("1 - Ajouter une chambre");
+    Console.WriteLine("2 - Lister les chambres");
+    Console.WriteLine("3 - Rechercher chambre par type");
+    Console.WriteLine("4 - Lister réservation(s)");
+    Console.WriteLine("5 - Afficher chambres libres (période)");
+    Console.WriteLine("6 - Annuler réservation(s)");
     Console.WriteLine("");
     Console.Write("Entrez l'action voulue: ");
     if (!Int32.TryParse(Console.ReadLine(), out var action))
     {
-        
+
     }
-    
+
     switch (action)
     {
         case 1:
-            var recherche = "";
+            Console.WriteLine("Ajout d'une chambre");
+            Console.Write("Prix: ");
+            Decimal.TryParse(Console.ReadLine(), out decimal price);
+            Console.Write("Capacité: ");
+            Int32.TryParse(Console.ReadLine(), out int cap);
+            Console.Write("Type de chambre: ");
+            TypeChambre cTypeInput = TypeChambre.None;
+            
             while (true)
             {
-                Console.Write("Recherche: ");
-                recherche = Console.ReadLine();
-                if (recherche is null)
+                var typeInput = Console.ReadLine();
+                if (!Enum.TryParse<TypeChambre>(typeInput, ignoreCase: true, out cTypeInput))
                 {
-                    Console.WriteLine("Entrez une vraie recherche");
                     continue;
                 }
+
                 break;
             }
-            bibliotheque.RechercherLivre(recherche);
-            Console.WriteLine("Appuyez sur une touche pour revenir au menu...");
-            Console.ReadLine();
+
+            Chambre chambre = new Chambre(cap, price, cTypeInput);
+            hotel.AjouterChambre(chambre);
             break;
         case 2:
-            Console.WriteLine("Ajout d'un livre");
-            Console.Write("Auteur: ");
-            var auteur = Console.ReadLine();
-            Console.Write("Titre: ");
-            var titre = Console.ReadLine();
-            Console.Write("Année: ");
-            var annee = Console.ReadLine();
-            var livre = new Livre() { Auteur = auteur, Titre = titre, Annee =  annee };
-            bibliotheque.AjouterLivre(livre);
+            Console.Clear();
+            Console.WriteLine("Liste des chambres de l'hôtel: ");
+            hotel.AfficherChambres();
+            Console.ReadLine();
             break;
         case 3:
-            Console.WriteLine("Suppression d'un livre");
-            while (true)
-            {
-                Console.Write("Id du livre: ");
-                if (!Int32.TryParse(Console.ReadLine(), out int idLivre))
-                {
-                    Console.WriteLine("Pas un chiffre.");
-                    continue;
-                }
-                bibliotheque.RetirerLivre(idLivre);
-                break;
-            }
+            Console.WriteLine("Recherche par type: ");
+            Enum.TryParse(Console.ReadLine(), out TypeChambre typeSearch);
+            hotel.AfficherChambresParType(typeSearch);
             break;
         case 4:
-            bibliotheque.AfficherLivres();
-            Console.WriteLine("Appuyez sur une touche pour revenir au menu...");
-            Console.ReadLine();
+            Console.WriteLine("Liste des réservations: ");
             break;
         default:
             Console.WriteLine("Mauvaise action, retour au menu");
-            Thread.Sleep(1000);
             break;
     }
 }

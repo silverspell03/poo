@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cours.Dictionnaire
+namespace CoursPOO.Dictionnaire
 {
     public class Exercice
     {
-        private Dictionary<string, string> pays = new Dictionary<string, string>();
-        private Dictionary<string, double> produits = new Dictionary<string, double>();
+        private Dictionary<string, string> _pays = new Dictionary<string, string>();
+        private Dictionary<string, double> _produits = new Dictionary<string, double>();
         public void ExerciceSix()
         {
-            pays.Add("FR", "France");
-            pays.Add("BE", "Belgique");
-            pays.Add("DE", "Allemagne");
+            _pays.Add("FR", "France");
+            _pays.Add("BE", "Belgique");
+            _pays.Add("DE", "Allemagne");
 
-            foreach (var pay in pays)
+            foreach (var pay in _pays)
             {
                 Console.WriteLine("{0} - {1}", pay.Key, pay.Value);
             }
@@ -25,16 +25,16 @@ namespace Cours.Dictionnaire
             string userInput = "";
             userInput = Console.ReadLine();
 
-            if (pays.ContainsKey(userInput))
+            if (_pays.ContainsKey(userInput))
             {
-                Console.WriteLine("{0} - {1}", userInput, pays[userInput]);
+                Console.WriteLine("{0} - {1}", userInput, _pays[userInput]);
             }
         }
         public void ExerciceHuit()
         {
-            produits.Add("Pomme", 1.65);
-            produits.Add("Banane", 1.89);
-            produits.Add("Orange", 5.6);
+            _produits.Add("Pomme", 1.65);
+            _produits.Add("Banane", 1.89);
+            _produits.Add("Orange", 5.6);
             
             Console.WriteLine("Taper nom produit pour prix: ");
             
@@ -43,7 +43,7 @@ namespace Cours.Dictionnaire
 
             try
             {
-                Console.WriteLine(produits[userInput]);
+                Console.WriteLine(_produits[userInput]);
             }
             catch (KeyNotFoundException)
             {
@@ -53,9 +53,9 @@ namespace Cours.Dictionnaire
 
         public void ExerciceNeuf()
         {
-            produits.Add("Pomme", 1.65);
-            produits.Add("Banane", 1.89);
-            produits.Add("Orange", 5.6);
+            _produits.Add("Pomme", 1.65);
+            _produits.Add("Banane", 1.89);
+            _produits.Add("Orange", 5.6);
             
             List<double> panier = new List<double>();
             Console.WriteLine("Tape nom produit pour remplir panier: ");
@@ -64,10 +64,10 @@ namespace Cours.Dictionnaire
 
             while (userInput != "stop")
             {
-                userInput = Console.ReadLine();
+                userInput = Console.ReadLine() ?? "";
                 try
                 {
-                    panier.Add(produits[userInput]);
+                    panier.Add(_produits[userInput]);
                 }
                 catch (KeyNotFoundException)
                 {
